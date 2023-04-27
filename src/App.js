@@ -1,7 +1,43 @@
+import React, { useState } from "react";
+import FormItem from "./form";
+import Todolist from "./todolist";
+
 function App() {
+
+  const[todos, setTodos] = useState([]);
+
+ 
+
+  function toggleToDo(id, completed){
+    setTodos(currentTodos =>{
+      return currentTodos.map(todo =>{
+         if(todo.id === id){
+          return  {...todo, completed}
+         }
+         return todo
+      })
+    })
+  }
+   function addToDo(title){
+     setTodos(currentTodos =>{
+           return[
+             ...currentTodos,
+             {id:crypto.randomUUID(), title, completed:false}
+           ]
+        })
+   }  
+
+  function deleteToDo(id){
+    setTodos(currentTodos =>{
+      return currentTodos.filter(todo => todo.id !== id)
+    })
+  }
+
   return (
-    <div>
-      <h1 className=" font-bold items center justify-center text-red-600 text-2xl">Hey there, your brain is amazing</h1>
+    <div className="max-w-md mx-auto pt-10 px-12 space-x-4 flex flex-col">
+     <FormItem onSubmit={addToDo} />
+      <h1 className="font-bold text-3xl pb-5 text-white underline">My Tasks</h1>
+     <Todolist todos={todos} toggleToDo={toggleToDo} deleteToDo={deleteToDo} />
     </div>
   );
 }
