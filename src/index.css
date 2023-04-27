@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:linear-gradient(to right, #020024,#00d4ff);
+}
+/* .mainlist li:has(input:checked) label {
+    color: hsl(200, 20%, 40%);
+  } */
+@layer components {
+  .btn-delt{
+    @apply w-[1/6] py-3 px-3 bg-red-500 cursor-pointer rounded
+  }
+  .mainlist li:has(input:checked) label span {
+    @apply line-through text-yellow-300
+  }
+
+}
